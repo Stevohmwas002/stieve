@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stephen Mwangi - Aspiring Data Scientist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: #000;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3rem;
+        }
+
+        nav .logo {
+            color: #00d4ff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        /* Hero Section with Global Network Background */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(135deg, rgba(0, 20, 40, 0.95) 0%, rgba(0, 10, 30, 0.9) 100%),
+                url('data:image/svg+xml,%3Csvg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3CradialGradient id="glow"%3E%3Cstop offset="0%25" style="stop-color:%2300d4ff;stop-opacity:0.8"/%3E%3Cstop offset="100%25" style="stop-color:%2300d4ff;stop-opacity:0"/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill="%23001428" width="1920" height="1080"/%3E%3Cg opacity="0.4"%3E%3Ccircle cx="960" cy="540" r="300" fill="url(%23glow)"/%3E%3Ccircle cx="960" cy="540" r="250" fill="none" stroke="%2300d4ff" stroke-width="2" opacity="0.3"/%3E%3Ccircle cx="960" cy="540" r="200" fill="none" stroke="%2300d4ff" stroke-width="1.5" opacity="0.2"/%3E%3Cline x1="760" y1="540" x2="600" y2="400" stroke="%2300d4ff" stroke-width="1" opacity="0.3"/%3E%3Cline x1="1160" y1="540" x2="1320" y2="400" stroke="%2300d4ff" stroke-width="1" opacity="0.3"/%3E%3Cline x1="960" y1="340" x2="960" y2="200" stroke="%2300d4ff" stroke-width="1" opacity="0.3"/%3E%3Cline x1="960" y1="740" x2="960" y2="880" stroke="%2300d4ff" stroke-width="1" opacity="0.3"/%3E%3Ccircle cx="600" cy="400" r="8" fill="%2300d4ff" opacity="0.6"/%3E%3Ccircle cx="1320" cy="400" r="8" fill="%2300d4ff" opacity="0.6"/%3E%3Ccircle cx="960" cy="200" r="8" fill="%2300d4ff" opacity="0.6"/%3E%3Ccircle cx="960" cy="880" r="8" fill="%2300d4ff" opacity="0.6"/%3E%3C/g%3E%3C/svg%3E');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero .tagline {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: #000;
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(0, 212, 255, 0.5);
+        }
+
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        /* About Section with Data Analytics Background */
+        #about {
+            position: relative;
+            padding: 8rem 2rem;
+            overflow: hidden;
+        }
+
+        #about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(180deg, rgba(0, 20, 40, 0.95) 0%, rgba(10, 30, 50, 0.95) 100%),
+                url('data:image/svg+xml,%3Csvg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg"%3E%3Crect fill="%230a1e32" width="1920" height="1080"/%3E%3Cg opacity="0.3" stroke="%2300d4ff" fill="none"%3E%3Cpath d="M100,800 L300,600 L500,650 L700,400 L900,450 L1100,300 L1300,350 L1500,200 L1700,250" stroke-width="3"/%3E%3Ccircle cx="100" cy="800" r="6" fill="%2300d4ff"/%3E%3Ccircle cx="300" cy="600" r="6" fill="%2300d4ff"/%3E%3Ccircle cx="500" cy="650" r="6" fill="%2300d4ff"/%3E%3Ccircle cx="700" cy="400" r="6" fill="%2300d4ff"/%3E%3Ccircle cx="900" cy="450" r="6" fill="%2300d4ff"/%3E%3Ccircle cx="1100" cy="300" r="6" fill="%2300d4ff"/%3E%3Ccircle cx="1300" cy="350" r="6" fill="%2300d4ff"/%3E%3Ccircle cx="1500" cy="200" r="6" fill="%2300d4ff"/%3E%3Cg transform="translate(1400, 600)"%3E%3Crect x="0" y="100" width="60" height="150" fill="%2300d4ff" opacity="0.3"/%3E%3Crect x="80" y="80" width="60" height="170" fill="%2300d4ff" opacity="0.4"/%3E%3Crect x="160" y="40" width="60" height="210" fill="%2300d4ff" opacity="0.5"/%3E%3Crect x="240" y="60" width="60" height="190" fill="%2300d4ff" opacity="0.4"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: #00d4ff;
+            padding: 0.7rem 1.8rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+            transform: translateY(-2px);
+        }
+
+        .about-stats {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            margin-bottom: 2rem;
+        }
+
+        .stat-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Portfolio Section with Africa Background */
+        #portfolio {
+            position: relative;
+            padding: 8rem 2rem;
+            overflow: hidden;
+        }
+
+        #portfolio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(135deg, rgba(40, 20, 0, 0.95) 0%, rgba(60, 30, 10, 0.9) 100%),
+                url('data:image/svg+xml,%3Csvg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3ClinearGradient id="afGrad" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23C8763C"/%3E%3Cstop offset="50%25" style="stop-color:%23E89D3C"/%3E%3Cstop offset="100%25" style="stop-color:%23F4A440"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill="%23281408" width="1920" height="1080"/%3E%3Cg transform="translate(200, 200)" opacity="0.3"%3E%3Cpath d="M300,100 Q280,150 260,200 Q240,250 230,300 Q220,350 220,400 Q220,450 230,500 Q240,550 260,600 L280,650 Q300,620 320,590 Q350,540 380,520 Q420,490 460,480 Q500,470 540,480 Q580,490 600,520 L620,500 Q640,450 640,400 Q640,350 630,300 Q620,250 600,200 Q580,150 560,100 Q520,70 480,60 Q440,50 400,60 Q360,70 320,100 Z" fill="url(%23afGrad)" stroke="%23F4A440" stroke-width="2"/%3E%3Cellipse cx="320" cy="280" rx="25" ry="35" fill="%23281408" opacity="0.6"/%3E%3Cpath d="M400,250 Q390,280 385,310" stroke="%23E89D3C" stroke-width="3" fill="none"/%3E%3Cpath d="M280,350 L300,360 L290,380 L270,370 Z" fill="%23C8763C"/%3E%3C/g%3E%3Cg transform="translate(1200, 300)" opacity="0.2"%3E%3Ctext font-size="120" fill="%23F4A440" font-weight="bold" font-family="Arial"%3EREGIONAL%3C/text%3E%3Ctext y="100" font-size="120" fill="%23F4A440" font-weight="bold" font-family="Arial"%3EINTEGRATION%3C/text%3E%3Ctext y="180" font-size="80" fill="%23E89D3C" font-family="Arial"%3EIN AFRICA%3C/text%3E%3C/g%3E%3C/svg%3E');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .portfolio-item {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            border-color: #00d4ff;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .portfolio-thumbnail {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            filter: brightness(0.9);
+            transition: all 0.4s;
+        }
+
+        .portfolio-item:hover .portfolio-thumbnail {
+            filter: brightness(1.1);
+            transform: scale(1.05);
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .portfolio-content p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: gap 0.3s;
+        }
+
+        .portfolio-link:hover {
+            gap: 1rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            position: relative;
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 20, 40, 0.95) 0%, rgba(0, 10, 30, 0.95) 100%);
+        }
+
+        .contact-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .contact-card {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 1rem;
+            color: #00d4ff;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .contact-card a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            word-break: break-word;
+            transition: color 0.3s;
+        }
+
+        .contact-card a:hover {
+            color: #00d4ff;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            nav .container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            nav ul {
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.3rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">SM</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Stephen Mwangi</h1>
+            <p class="tagline">Data Scientist | Forex Trader | Problem Solver</p>
+            <p>
+                I'm from Nairobi, and I'm a student at ALX Kenya with aspirations of becoming a data scientist 
+                and professional forex trader. I transform complex data into actionable insights that drive 
+                real-world solutions.
+            </p>
+            <div class="cta-buttons">
+                <a href="#portfolio" class="cta-button cta-primary">View My Work</a>
+                <a href="#contact" class="cta-button cta-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Stephen, a prospective data scientist from Nairobi, Kenya, is presently undergoing 
+                        training at ALX to develop useful skills in research, data analysis, and ethical AI. 
+                        His passion is turning complicated data into insightful knowledge that leads to 
+                        practical solutions.
+                    </p>
+                    <p>
+                        In addition to his leadership abilities from overseeing agile student projects, 
+                        Stephen brings a solid analytical background bolstered by his experience in 
+                        financial market trading. In the coming years, he hopes to contribute to 
+                        data-driven innovation throughout Africa by developing impactful, user-centered solutions.
+                    </p>
+                    
+                    <div class="skills">
+                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">Data Storytelling</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Research</span>
+                        <span class="skill-tag">Forex Trading</span>
+                        <span class="skill-tag">Agile Management</span>
+                        <span class="skill-tag">Ethical AI</span>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">ALX</div>
+                        <div class="stat-label">Training at Africa's Premier Tech Academy</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Data+Finance</div>
+                        <div class="stat-label">Unique Blend of Analytical Skills</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Africa-Focused</div>
+                        <div class="stat-label">Building Solutions for the Continent</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">My Portfolio</h2>
+            
+            <div class="portfolio-grid">
+                <!-- Portfolio Video -->
+                <div class="portfolio-item fade-in">
+                    <img src="data:image/svg+xml,%3Csvg width='800' height='600' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='afGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23C8763C'/%3E%3Cstop offset='50%25' style='stop-color:%23E89D3C'/%3E%3Cstop offset='100%25' style='stop-color:%23F4A440'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='%23281408' width='800' height='600'/%3E%3Cg transform='translate(100, 100)' opacity='0.8'%3E%3Cpath d='M300,100 Q280,150 260,200 Q240,250 230,300 Q220,350 220,400 Q220,450 230,500 Q240,550 260,600 L280,650 Q300,620 320,590 Q350,540 380,520 Q420,490 460,480 Q500,470 540,480 Q580,490 600,520 L620,500 Q640,450 640,400 Q640,350 630,300 Q620,250 600,200 Q580,150 560,100 Q520,70 480,60 Q440,50 400,60 Q360,70 320,100 Z' fill='url(%23afGrad)' stroke='%23F4A440' stroke-width='3'/%3E%3Cellipse cx='320' cy='280' rx='30' ry='40' fill='%23281408' opacity='0.7'/%3E%3Cpath d='M400,250 Q390,280 385,310' stroke='%23E89D3C' stroke-width='4' fill='none'/%3E%3C/g%3E%3Ctext x='400' y='500' font-size='60' fill='%23F4A440' text-anchor='middle' font-weight='bold'%3EREGIONAL INTEGRATION%3C/text%3E%3Ctext x='400' y='560' font-size='40' fill='%23E89D3C' text-anchor='middle'%3EIN AFRICA%3C/text%3E%3C/svg%3E" 
+                         alt="Regional Integration in Africa" class="portfolio-thumbnail">
+                    <div class="portfolio-content">
+                        <h3>Portfolio Presentation Video</h3>
+                        <p>Watch my comprehensive portfolio presentation showcasing data science projects and analytical capabilities with a focus on regional integration in Africa.</p>
+                        <a href="https://drive.google.com/file/d/1hZkOyNsf8W8yZA0vJ1crLxb35X6L7meg/view?usp=drive_link" target="_blank" class="portfolio-link">Watch Video →</a>
+                    </div>
+                </div>
+
+                <!-- Portfolio Slides -->
+                <div class="portfolio-item fade-in">
+                    <img src="data:image/svg+xml,%3Csvg width='800' height='600' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%231e3a8a'/%3E%3Cstop offset='100%25' style='stop-color:%233b82f6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='url(%23g)'/%3E%3Cg fill='white' opacity='0.3'%3E%3Cpath d='M100,500 L150,480 L200,450 L250,420 L300,400 L350,360 L400,340 L450,300 L500,280 L550,240 L600,220 L650,180 L700,160' stroke='white' stroke-width='4' fill='none'/%3E%3Ccircle cx='100' cy='500' r='8' fill='white'/%3E%3Ccircle cx='250' cy='420' r='8' fill='white'/%3E%3Ccircle cx='400' cy='340' r='8' fill='white'/%3E%3Ccircle cx='550' cy='240' r='8' fill='white'/%3E%3Ccircle cx='700' cy='160' r='8' fill='white'/%3E%3Crect x='100' y='480' width='60' height='20' fill='%2300d4ff' opacity='0.5'/%3E%3Crect x='200' y='430' width='60' height='70' fill='%2300d4ff' opacity='0.6'/%3E%3Crect x='300' y='380' width='60' height='120' fill='%2300d4ff' opacity='0.7'/%3E%3Crect x='400' y='320' width='60' height='180' fill='%2300d4ff' opacity='0.8'/%3E%3Crect x='500' y='260' width='60' height='240' fill='%2300d4ff' opacity='0.9'/%3E%3Crect x='600' y='140' width='60' height='360' fill='%2300d4ff'/%3E%3C/g%3E%3C/svg%3E" 
+                         alt="Data Analytics" class="portfolio-thumbnail">
+                    <div class="portfolio-content">
+                        <h3>Portfolio Slide Deck</h3>
+                        <p>Detailed slides covering my projects, skills, and achievements in data science and analytics.</p>
+                        <a href="https://docs.google.com/presentation/d/1y9EqvQnfKoxqjIkAObnVOLbNM6462hkASMGLaUNuX6E/edit?usp=drive_link" target="_blank" class="portfolio-link">View Slides →</a>
+                    </div>
+                </div>
+
+                <!-- Project Highlight -->
+                <div class="portfolio-item fade-in">
+                    <img src="data:image/svg+xml,%3Csvg width='800' height='600' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3CradialGradient id='r'%3E%3Cstop offset='0%25' style='stop-color:%2306b6d4'/%3E%3Cstop offset='100%25' style='stop-color:%230e7490'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='url(%23r)'/%3E%3Ccircle cx='400' cy='300' r='200' fill='none' stroke='white' stroke-width='3' opacity='0.4'/%3E%3Ccircle cx='400' cy='300' r='160' fill='none' stroke='white' stroke-width='2' opacity='0.3'/%3E%3Ccircle cx='400' cy='300' r='120' fill='none' stroke='white' stroke-width='2' opacity='0.3'/%3E%3Cg opacity='0.5'%3E%3Cline x1='400' y1='100' x2='400' y2='500' stroke='white' stroke-width='1'/%3E%3Cline x1='200' y1='300' x2='600' y2='300' stroke='white' stroke-width='1'/%3E%3Cline x1='260' y1='160' x2='540' y2='440' stroke='white' stroke-width='1'/%3E%3Cline x1='540' y1='160' x2='260' y2='440' stroke='white' stroke-width='1'/%3E%3C/g%3E%3Ccircle cx='400' cy='300' r='20' fill='%2300d4ff' opacity='0.8'/%3E%3Ccircle cx='500' cy='250' r='10' fill='white' opacity='0.6'/%3E%3Ccircle cx='300' cy='350' r='10' fill='white' opacity='0.6'/%3E%3Ccircle cx='350' cy='200' r='10' fill='white' opacity='0.6'/%3E%3Ccircle cx='450' cy='400' r='10' fill='white' opacity='0.6'/%3E%3C/svg%3E" 
+                         alt="Global Data Network" class="portfolio-thumbnail">
+                    <div class="portfolio-content">
+                        <h3>Data-Driven Innovation</h3>
+                        <p>Explore my approach to solving complex problems through data analysis and ethical AI practices.</p>
+                        <a href="#contact" class="portfolio-link">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="contact-intro">
+                I'd love to hear from you! Whether you're interested in collaboration, have a project in mind, 
+                or just want to connect, feel free to reach out.
+            </p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:stevohmwas002@gmail.com">stevohmwas002@gmail.com</a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>Phone</h3>
+                    <a href="tel:+254701742057">+254 701 742 057</a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/stephen-mwangi-7634192a0" target="_blank">Connect with me</a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">📸</div>
+                    <h3>Instagram</h3>
+                    <a href="https://www.instagram.com/stivohh_/" target="_blank">@stivohh_</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Stephen Mwangi. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">Transforming Data into Insights | Nairobi, Kenya</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.portfolio-item, .contact-card, .skill-tag').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
